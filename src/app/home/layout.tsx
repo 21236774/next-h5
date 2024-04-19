@@ -39,13 +39,16 @@ export default function RootLayout({
       title: "我的",
       icon: <UserOutline />,
     },
-  ];
-
-  const [activeKey, setActiveKey] = useState("todo");
+  ]
+  const [activeKey, setActiveKey] = useState("home");
+  const tabBarChange = (key: string) => {
+    setActiveKey(key)
+  }
+  
   return (
     <>
       <main>{children}</main>
-      <TabBar className="absolute bottom-0 w-full bg-slate-100">
+      <TabBar className="absolute bottom-0 w-full bg-slate-100 dark:bg-dark-18" activeKey={activeKey} onChange={tabBarChange}>
         {tabs.map((item) => (
           <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
         ))}
