@@ -7,7 +7,11 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-
+html,body {
+  width: 100%;
+  /* background-color: #999; */
+  height: 100%;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
