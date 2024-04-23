@@ -15,6 +15,9 @@ const config: Config = {
       },
       colors: {
         'dark-18': '#181818',
+        'tag-bg': 'hsla(0, 0%, 100%, 0.12)',
+        'tag-text': 'hsla(0, 0%, 100%, 0.46)',
+        'title': 'hsla(0, 0%, 100%, 0.8)'
       },
     },
   },
