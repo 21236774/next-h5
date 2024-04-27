@@ -1,5 +1,6 @@
 
-## Next.js 项目
+## Next.js 前后端项目
+> next.js+typescript+prisma+mysql
 
 运行以下命令安装依赖：
 

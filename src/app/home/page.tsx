@@ -2,18 +2,26 @@
 import Image from "next/image";
 import wangxiaomei from "@/assets/icon/wangxiaomei.png";
 import { Tabs, Swiper, Divider } from "antd-mobile";
-import React, { useRef, useState } from "react";
-import { SwiperRef } from "antd-mobile/es/components/swiper";
+import React, { useRef, useState, useEffect } from "react";
+import { SwiperRef } from "antd-mobile/es/components/swiper"
+import { getCategoryData, getArticleData } from '@/app/api'
+import { useRequest } from "ahooks"
 
-const tabItems = [
-  { key: "fruits", title: "水果" },
-  { key: "vegetables", title: "蔬菜" },
-  { key: "animals", title: "动物" },
-];
-
+// 下次研究一下接口自动生成TS类型的工具
 export default function Home() {
   const swiperRef = useRef<SwiperRef>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0)
+  const { data: categoryList } = useRequest(getCategoryData)
+  const { runAsync } = useRequest(getArticleData)
+  useEffect(() => {
+    if (categoryList?.data.length) {
+      const item = categoryList?.data.find((obj: any) => obj.disabled !== 0)
+      if(item) {
+        setActiveIndex(item.id)
+        runAsync(item.id)
+      }
+    }
+  }, [categoryList])
   return (
     <div className="flex flex-col h-full">
       <header className="flex p-4 bg-white dark:bg-dark-18">
@@ -39,15 +47,14 @@ export default function Home() {
             "--title-font-size": "15px",
             "--content-padding": "0px",
           }}
-          activeKey={tabItems[activeIndex].key}
+          activeKey={categoryList?.data[activeIndex].id}
           onChange={(key) => {
-            const index = tabItems.findIndex((item) => item.key === key);
-            setActiveIndex(index);
-            swiperRef.current?.swipeTo(index);
+            setActiveIndex(Number(key));
+            swiperRef.current?.swipeTo(key as unknown as number);
           }}
         >
-          {tabItems.map((item) => (
-            <Tabs.Tab title={item.title} key={item.key} />
+          {categoryList?.data.map((item: any) => (
+            item?.disabled ? <Tabs.Tab title={item.tagName} key={item.id} /> : null
           ))}
         </Tabs>
         <Swiper

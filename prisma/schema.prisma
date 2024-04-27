@@ -1,0 +1,45 @@
+// npx prisma generate 每次改动文件需要运行一遍
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id       Int                @id @default(autoincrement())
+  tagName  String
+  cTime    DateTime?
+  uTime    DateTime?
+  disabled Int?
+  articles    ArticleCategory[]
+
+  @@map("category") // 表名---使用 @map() 重新映射为了下划线命名，使用时候只需要 category 即可
+}
+
+model Article {
+  id       Int                @id @default(autoincrement())
+  title    String
+  text     String
+  date     DateTime?
+  remark   String?
+  authId   Int?
+  abstract String?
+  tags     String?
+  disabled Int?
+  posts    ArticleCategory[]
+
+  @@map("article")
+}
+
+// 一对多关系
+model ArticleCategory {
+  articles   Article  @relation(fields: [articleId], references: [id])
+  categorys  Category @relation(fields: [categoryId], references: [id])
+  articleId  Int   @id   @map("article_id")
+  categoryId Int      @map("category_id")
+
+  @@map("article_category")
+}
