@@ -7,3 +7,19 @@
   font-size: 24px;
   user-select: none;
 }
+.customTabs {
+  height: 48px;
+}
+.swiperBox {
+  width: 70%;
+  height: 2rem;
+  margin-top: 1rem;
+}
+.abstractBox {
+  height: 36px;
+  margin-top: 10px;
+}
+.SkeletonItem {
+  height: 75vh !important;
+  overflow-y: auto !important;
+}

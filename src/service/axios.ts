@@ -14,7 +14,7 @@ class Request {
   instance: AxiosInstance
   // 基础配置，url和超时时间
   // baseURL 请求路径
-  baseConfig: AxiosRequestConfig = { baseURL: '', timeout: 2000 }
+  baseConfig: AxiosRequestConfig = { baseURL: '', timeout: 5000 }
   constructor(config: AxiosRequestConfig) {
     // 使用axios.create创建axios实例
     this.instance = axios.create(Object.assign(this.baseConfig, config))
@@ -51,7 +51,6 @@ class Request {
           case 401:
             message = '未授权，请重新登录(401)'
             // 这里可以做清空storage并跳转到登录页的操作
-            goLogout()
             break
           case 403:
             message = '拒绝访问(403)'

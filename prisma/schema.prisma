@@ -9,20 +9,21 @@ datasource db {
 }
 
 model Category {
-  id       Int                @id @default(autoincrement())
+  id       Int               @id @default(autoincrement())
   tagName  String
   cTime    DateTime?
   uTime    DateTime?
   disabled Int?
-  articles    ArticleCategory[]
+  articles ArticleCategory[]
 
   @@map("category") // 表名---使用 @map() 重新映射为了下划线命名，使用时候只需要 category 即可
 }
 
 model Article {
-  id       Int                @id @default(autoincrement())
+  id       Int               @id @default(autoincrement())
   title    String
   text     String
+  user     String
   date     DateTime?
   remark   String?
   authId   Int?
@@ -38,7 +39,7 @@ model Article {
 model ArticleCategory {
   articles   Article  @relation(fields: [articleId], references: [id])
   categorys  Category @relation(fields: [categoryId], references: [id])
-  articleId  Int   @id   @map("article_id")
+  articleId  Int      @id @map("article_id")
   categoryId Int      @map("category_id")
 
   @@map("article_category")

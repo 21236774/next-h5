@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import '@/assets/css/md.scss'
+import 'highlight.js/styles/default.min.css'
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
-        <div className="bg-slate-100 dark:bg-black h-full">{children}</div>
+        <div className="bg-slate-100 dark:bg-black h-full dark:text-white">{children}</div>
       </body>
     </html>
   );
