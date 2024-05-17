@@ -11,7 +11,7 @@ cnpm install
 # or
 yarn
 # or
-pnpm
+pnpm install
 ```
 
 启动项目：
@@ -25,3 +25,14 @@ pnpm dev
 bun dev
 ```
 
+发布上线
+```bash
+npm run build
+```
+
+```bash
+npm run start
+```
+
+##### prisma
+> 数据库模型文件， `model` 对应每一个表

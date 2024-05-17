@@ -1,15 +1,15 @@
 "use client";
 import Image from "next/image";
 import wangxiaomei from "@/assets/icon/wangxiaomei.png";
-import { Tabs, Swiper, Divider, Skeleton } from "antd-mobile";
-import React, { useRef, useState, useEffect } from "react";
+import { Tabs, Swiper, Divider, Skeleton } from "antd-mobile"
+import React, { useRef, useState, useEffect } from "react"
 import { SwiperRef } from "antd-mobile/es/components/swiper"
 import { getCategoryData, getArticleData } from '@/app/api'
 import { useRequest } from "ahooks"
 import style from './style.module.scss'
 import { useRouter } from "next/navigation"
-import commentIcon from "@/assets/icon/comment-icon.png";
-import likeIcon from "@/assets/icon/like-icon.png";
+import commentIcon from "@/assets/icon/comment-icon.png"
+import likeIcon from "@/assets/icon/like-icon.png"
 
 const SwiperItemBox = ({ item, toDtetail }: { item: Articles.Item, toDtetail: (id: number | string) => void }) => {
   return (
@@ -152,10 +152,7 @@ export default function Home() {
             "--content-padding": "0px",
           }}
           activeKey={categoryList?.data[activeIndex].id}
-          onChange={(key) => {
-            tabChange(key)
-            swiperRef.current?.swipeTo(key as unknown as number);
-          }}
+          onChange={(key) => swiperRef.current?.swipeTo(key as unknown as number)}
         >
           {categoryList?.data.map((item: any) => (
             item?.disabled ? <Tabs.Tab title={item.tagName} key={item.id} /> : null

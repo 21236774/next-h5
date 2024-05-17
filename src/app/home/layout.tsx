@@ -1,6 +1,6 @@
 'use client'
-import React, { useState, useRef } from "react";
-import { Badge, TabBar, Swiper } from "antd-mobile";
+import React, { useState } from "react";
+import { Badge, TabBar } from "antd-mobile";
 import { useRouter, usePathname } from "next/navigation"
 
 import {
@@ -28,12 +28,14 @@ export default function RootLayout({
     {
       key: "todo",
       title: "待办",
+      path: '/home/todo',
       icon: <UnorderedListOutline />,
       badge: "5",
     },
     {
       key: "message",
       title: "消息",
+      path: '/home/message',
       icon: (active: boolean) =>
         active ? <MessageFill /> : <MessageOutline />,
       badge: "99+",
@@ -51,6 +53,7 @@ export default function RootLayout({
   const [activeKey, setActiveKey] = useState(active !== -1 ? active : 1)
   const tabBarChange = (key: string) => {
     const index = tabs.findIndex(item => item.key === key)
+    console.log(index, key)
     if (tabs[index]?.path) {
       router.push(tabs[index]?.path as string)
     }

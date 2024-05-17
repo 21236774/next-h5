@@ -24,6 +24,11 @@ export default function Home() {
             浅色
           </Button>
       </nav>
+      <div className='flex p-4 bg-white dark:bg-slate-800'>
+          <Button color="danger" fill='solid' onClick={()=>{ location.href = process.env.NEXT_PUBLIC_NEW_URL as string }}>
+            切换新版
+          </Button>
+      </div>
     </>
   )
 }
